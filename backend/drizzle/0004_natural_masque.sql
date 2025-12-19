@@ -1,0 +1,1 @@
+ALTER TABLE "sessions" ADD COLUMN "character_level" integer;

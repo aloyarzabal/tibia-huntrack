@@ -1,0 +1,1 @@
+ALTER TABLE "sessions" ALTER COLUMN "character_level" DROP NOT NULL;

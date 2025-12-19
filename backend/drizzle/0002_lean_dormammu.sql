@@ -1,0 +1,1 @@
+ALTER TABLE "sessions" ADD COLUMN "session_length" varchar(50) NOT NULL;
