@@ -1,18 +1,10 @@
 import styled from "styled-components";
 import { MdOutlinePlaylistAdd } from "react-icons/md";
 
-interface TopSessionsProps {
-  openNewSessionModal: () => void;
-}
+interface TopSessionsProps {}
 
-export function TopSessions({ openNewSessionModal }: TopSessionsProps) {
-  return (
-    <StyledTopSession>
-      <AddSessionButton onClick={openNewSessionModal}>
-        <MdOutlinePlaylistAdd />
-      </AddSessionButton>
-    </StyledTopSession>
-  );
+export function TopSessions() {
+  return <StyledTopSession></StyledTopSession>;
 }
 
 const AddSessionButton = styled.button`
@@ -29,4 +21,5 @@ const StyledTopSession = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 200px;
 `;

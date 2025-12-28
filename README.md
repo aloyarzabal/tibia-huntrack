@@ -2,15 +2,6 @@
 
 Tibia Huntrack is a full-stack application for **Tibia** players that allows tracking hunting sessions, analyzing loot, monsters, and received damage, as well as browsing past sessions with different levels of detail.
 
-The project is designed with a **scalable and professional architecture**, clearly separating:
-
-- persistence
-- business logic
-- data enrichment
-- external data consumption (Tibia Fandom / Wikia)
-
----
-
 ## 🚀 Main Features
 
 ### ✅ Session Management
@@ -19,6 +10,7 @@ The project is designed with a **scalable and professional architecture**, clear
   - killed monsters
   - looted items
   - received damage (optional)
+  - party members (optional)
 - Browse previous sessions
 - View full details of a specific session
 
@@ -44,45 +36,6 @@ From minimal input data (`{ name, count }`), the backend:
 - **Services** → business logic
 - **DB / Queries** → persistence layer
 - **Parsers / Fetchers** → controlled scraping & external data
-
----
-
-## 🏗️ General Architecture
-
-src/
-├── controllers/
-├── services/
-│ ├── sessions/
-│ ├── items/
-│ └── monsters/
-├── db/
-│ ├── schema/
-│ └── queries/
-├── utils/
-└── server/
-
-### Session Creation Flow
-
-Frontend
-→ POST /sessions/preview
-→ enrichItems / enrichMonsters
-→ summary (not persisted)
-
-Frontend
-→ POST /sessions
-→ persist session
-→ enrich data
-→ return full session details
-
----
-
-## 🧩 Session Data Types
-
-| Type           | Purpose                         |
-| -------------- | ------------------------------- |
-| SessionSummary | Sessions list view              |
-| SessionDetail  | Detailed session view / summary |
-| Raw Session    | Database persistence            |
 
 ---
 
@@ -113,17 +66,9 @@ Frontend
 
 ---
 
-## 🔒 Security & Data Control
+<!-- ## 📌 Project Status
 
-- Clear separation between preview and persistence
-- No data is stored unless the user confirms
-- Enrichment never blocks session creation
-
----
-
-## 📌 Project Status
-
-🚧 Actively under development  
+🚧 Actively under development
 Planned improvements:
 
 - external data caching
@@ -131,11 +76,11 @@ Planned improvements:
 - aggregated metrics
 - frontend UI and data visualization
 
----
+--- -->
 
 ## 👤 Author
 
-Developed by **Aloy Arzabal**  
+Developed by **Aloyarzabal**  
 Frontend Developer → Backend / Full-Stack in progress
 
 GitHub: https://github.com/aloyarzabal

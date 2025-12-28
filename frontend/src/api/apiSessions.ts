@@ -1,10 +1,15 @@
 import type { PostPayload } from "../pages/types/payloads";
 
-export async function getAllSessions() {
+export async function fetchSessions() {
   const res = await fetch("http://localhost:3000/sessions/", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch sessions");
+  }
+
   const { data } = await res.json();
 
   return data;
@@ -17,7 +22,7 @@ export async function createSession(payload: PostPayload) {
     body: JSON.stringify(payload),
   });
 
-  return res;
+  return res.json();
 }
 
 export async function getSessionById(id: string) {
@@ -37,5 +42,5 @@ export async function previewSession(payload: PostPayload) {
     body: JSON.stringify(payload),
   });
 
-  return res;
+  return res.json();
 }

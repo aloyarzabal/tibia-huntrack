@@ -1,14 +1,14 @@
 import { useState, type ChangeEvent } from "react";
 import styled, { css } from "styled-components";
-import Heading from "../components/Heading";
-import { parseDamage, parseSession } from "./summary/utils/parseSession";
-import type { InputSession } from "./types/inputSession";
+import Heading from "../../../components/Heading";
+import { parseDamage, parseSession } from "../../summary/utils/parseSession";
+import type { InputSession } from "../../types/inputSession";
 import { CiNoWaitingSign } from "react-icons/ci";
 import { CgRadioCheck, CgCloseO, CgCheckO } from "react-icons/cg";
-import type { InputDamage } from "./types/inputDamage";
-import type { InputPayload } from "./types/payloads";
+import type { InputDamage } from "../../types/inputDamage";
+import type { InputPayload } from "../../types/payloads";
 
-interface NewSessionViewProps {
+interface CreateSessionFormProps {
   onSubmitNewSession: (newSession: InputPayload) => void;
 }
 
@@ -16,8 +16,11 @@ type ValidationIconState = "default" | "correct" | "incorrect";
 
 // Takes hunting and damage sessions, parses them and lifts them up using
 // the function via props: onSubmitNewSession
+//  NEEDS REFACTOR ASAP
 // *************************************************************
-export function NewSessionView({ onSubmitNewSession }: NewSessionViewProps) {
+export function CreateSessionForm({
+  onSubmitNewSession,
+}: CreateSessionFormProps) {
   const [inputSessionValue, setInputSessionValue] = useState<string>("");
   const [inputDamageValue, setInputDamageValue] = useState<string>("");
   const [isInputSessionWrong, setIsInputSessionWrong] = useState(false);
@@ -25,9 +28,8 @@ export function NewSessionView({ onSubmitNewSession }: NewSessionViewProps) {
   const [parsedSessionInput, setParsedSessionInput] = useState<InputSession>(
     {} as InputSession
   );
-  const [parsedDamageInput, setParsedDamageInput] = useState<InputDamage>(
-    {} as InputDamage
-  );
+  const [parsedDamageInput, setParsedDamageInput] =
+    useState<InputDamage | null>(null);
 
   const [isChecked, setIsChecked] = useState(false);
   const [damageValidationState, setDamageValidationState] =

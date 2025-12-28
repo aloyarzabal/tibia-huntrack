@@ -17,5 +17,5 @@ export type PostPayload = {
 
 export type InputPayload = {
   session: InputSession;
-  damage?: InputDamage;
+  damage?: InputDamage | null;
 };

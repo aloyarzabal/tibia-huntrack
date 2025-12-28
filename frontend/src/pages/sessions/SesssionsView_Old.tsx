@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { LastSessions } from "./LastSessions";
-import { TopSessions } from "./TopSessions";
+import { LastSessions } from "./SessionsTable";
+import { TopSessions } from "./SessionsTop";
 import { useEffect, useState } from "react";
 import {
   createSession,
@@ -8,8 +8,8 @@ import {
   getSessionById,
 } from "../../api/apiSessions";
 import Modal from "../../components/Modal";
-import { NewSessionView } from "../NewSessionView";
-import { SummaryView } from "../summary/SummaryView";
+import { NewSessionView } from "./CreateSessionModal/CreateSessionForm";
+import { SummaryView } from "../summary/SessionSummary";
 import type {
   DatabasePayload,
   InputPayload,
@@ -92,7 +92,7 @@ export function SessionsView() {
     }
 
     const postPayload: PostPayload = {
-      session: { ...newSession.session, characterId: 2, characterLevel: 337 },
+      session: { ...newSession.session, characterId: 2, characterLevel: 345 },
       damage: damageInput,
     };
 
@@ -111,7 +111,7 @@ export function SessionsView() {
   return (
     <StyledSessionView>
       <TopSessions openNewSessionModal={openNewSessionModal} />
-      <LastSessions sessions={sessions} setSessionId={setSessionId} />
+      <LastSessions />
 
       {isNewSessionModalOpen && (
         <Modal onClose={closeNewSessionModal}>

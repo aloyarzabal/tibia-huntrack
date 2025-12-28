@@ -8,17 +8,17 @@ import Heading from "../../components/Heading";
 
 import type { DatabasePayload, InputPayload } from "../types/payloads";
 
-interface SummaryViewProps {
+interface SessionSummaryProps {
   sessionToDisplay: DatabasePayload | InputPayload;
-  onSave: () => void;
-  isNewSession: boolean;
+  onSave?: () => void;
+  mode: "preview" | "readonly";
 }
 
-export function SummaryView({
+export function SessionSummary({
   sessionToDisplay,
   onSave,
-  isNewSession,
-}: SummaryViewProps) {
+  mode,
+}: SessionSummaryProps) {
   const { session, damage } = sessionToDisplay;
   const formatter = new Intl.NumberFormat("es-ES");
 
@@ -85,7 +85,7 @@ export function SummaryView({
         <LootSummary lootedItems={session.lootedItems} />
       </Section>
 
-      {isNewSession && (
+      {mode === "preview" && (
         <SaveButton onClick={onSave}>
           <VscSave />
           Save
