@@ -92,5 +92,6 @@ const TableRow = styled.tr`
 
   & td {
     text-align: center;
+    vertical-align: middle;
   }
 `;
