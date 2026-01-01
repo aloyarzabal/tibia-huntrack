@@ -1,0 +1,11 @@
+// {
+//   "compilerOptions": {
+//     "types": ["node", "jest", "@testing-library/jest-dom"],
+//     "jsx": "react-jsx",
+//     "target": "ES2020",
+//     "module": "ESNext",
+//     "moduleResolution": "bundler",
+//     "strict": true
+//   },
+//   "include": ["src", "frontend/jest.setup.ts"]
+// }
