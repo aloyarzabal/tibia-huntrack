@@ -21,31 +21,39 @@ export function SessionsTable({ sessions, onRowClick }: Props) {
         </tr>
       </Thead>
       <Tbody>
-        {sessions.map((session) => (
-          <TableRow
-            key={session.session.id}
-            onClick={() => onRowClick(session.session.id.toString())}
-          >
-            <td>
-              {new Date(session.session.sessionDate).toLocaleDateString()}
+        {sessions.length ? (
+          sessions.map((session) => (
+            <TableRow
+              key={session.session.id}
+              onClick={() => onRowClick(session.session.id.toString())}
+            >
+              <td>
+                {new Date(session.session.sessionDate).toLocaleDateString()}
+              </td>
+              <td>{session.session.sessionLength}</td>
+              <td>{session.session.balance}</td>
+              <td>{session.session.xpGain}</td>
+              <td>{session.session.characterLevel}</td>
+              <td>
+                {session.session.killedMonsters
+                  .filter((m) => m.count > 100)
+                  .map((m) => (
+                    <MonsterSpec
+                      key={m.name}
+                      src={monsterNameToImageUrl(m.name)}
+                      alt={m.name}
+                    />
+                  ))}
+              </td>
+            </TableRow>
+          ))
+        ) : (
+          <tr>
+            <td colSpan={6} style={{ textAlign: "center" }}>
+              No results yet, create your first session!
             </td>
-            <td>{session.session.sessionLength}</td>
-            <td>{session.session.balance}</td>
-            <td>{session.session.xpGain}</td>
-            <td>{session.session.characterLevel}</td>
-            <td>
-              {session.session.killedMonsters
-                .filter((m) => m.count > 100)
-                .map((m) => (
-                  <MonsterSpec
-                    key={m.name}
-                    src={monsterNameToImageUrl(m.name)}
-                    alt={m.name}
-                  />
-                ))}
-            </td>
-          </TableRow>
-        ))}
+          </tr>
+        )}
       </Tbody>
     </Table>
   );
