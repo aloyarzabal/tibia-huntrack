@@ -174,6 +174,7 @@ export const sessions: DatabasePayload[] = [
     },
   },
 ];
+
 export const multipleSessions: DatabasePayload[] = [
   {
     session: {
@@ -520,4 +521,5 @@ export const multipleSessions: DatabasePayload[] = [
     },
   },
 ];
+
 export const emptySession: DatabasePayload[] = [];
