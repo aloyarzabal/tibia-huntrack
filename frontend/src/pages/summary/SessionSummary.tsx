@@ -6,10 +6,10 @@ import { VscSave } from "react-icons/vsc";
 
 import Heading from "../../components/Heading";
 
-import type { DatabasePayload, InputPayload } from "../types/payloads";
+import type { EnrichedDatabasePayload } from "../types/payloads";
 
 interface SessionSummaryProps {
-  sessionToDisplay: DatabasePayload | InputPayload;
+  sessionToDisplay: EnrichedDatabasePayload;
   onSave?: () => void;
   mode: "preview" | "readonly";
 }
@@ -21,6 +21,7 @@ export function SessionSummary({
 }: SessionSummaryProps) {
   const { session, damage } = sessionToDisplay;
   const formatter = new Intl.NumberFormat("es-ES");
+  console.log("sessionsummary", session, damage);
 
   return (
     <>
@@ -47,24 +48,24 @@ export function SessionSummary({
             >
               {formatter.format(Number(session.balance))}
             </b>
-            <Img src="./gold_coin.png"></Img>
+            <Img src="/gold_coin.png"></Img>
           </InfoRow>
           <InfoRow>
             <p>XP gain:</p>
             <b>{formatter.format(Number(session.xpGain))}</b>
-            <Img src="./xp_logo_original.png"></Img>
+            <Img src="/xp_logo_original.png"></Img>
           </InfoRow>
           <InfoRow>
             <p>Damage/h:</p>
             <b>{formatter.format(Number(session.damagePerHour))}</b>
-            <Img src="./sword_melee.png"></Img>
+            <Img src="/sword_melee.png"></Img>
           </InfoRow>
         </SessionInfo>
         {damage && (
           <DamageInfo>
             {damage &&
               damage.damageTypes.map((type) => {
-                const src = `./${type.name}.png`;
+                const src = `/${type.name}.png`;
                 return (
                   <InfoRow>
                     <Img src={src} />

@@ -36,9 +36,13 @@ export const getAllSessionsWithDamage = async () => {
 
 export const getSessionById = async (sessionId: number) => {
   const found = await db
-    .select()
+    .select({
+      session: sessions,
+      damage: damageInputs,
+    })
     .from(sessions)
-    .where(eq(sessions.id, sessionId));
+    .where(eq(sessions.id, sessionId))
+    .leftJoin(damageInputs, eq(damageInputs.sessionId, sessionId));
   return found[0];
 };
 

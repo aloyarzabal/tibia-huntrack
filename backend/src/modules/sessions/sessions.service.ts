@@ -48,13 +48,18 @@ export async function getSessionById(id: string) {
 
   const enrichedSession = { ...found };
 
-  if (found.lootedItems?.length) {
-    enrichedSession.lootedItems = await enrichItems(found.lootedItems);
+  if (found.session.lootedItems?.length) {
+    enrichedSession.session.lootedItems = await enrichItems(
+      found.session.lootedItems
+    );
   }
 
-  if (found.killedMonsters?.length) {
-    enrichedSession.killedMonsters = await enrichMonsters(found.killedMonsters);
+  if (found.session.killedMonsters?.length) {
+    enrichedSession.session.killedMonsters = await enrichMonsters(
+      found.session.killedMonsters
+    );
   }
+  console.log(enrichedSession);
 
   // const enrichedSession = getSessionWithDetails(found);
 

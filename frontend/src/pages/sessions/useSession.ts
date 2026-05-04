@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getSessionById } from "../../api/apiSessions";
-import type { DatabasePayload } from "../types/payloads";
+import type {
+  DatabasePayload,
+  EnrichedDatabasePayload,
+} from "../types/payloads";
 
 export function useSession(id: string) {
-  const [session, setSession] = useState<DatabasePayload | null>(null);
+  const [session, setSession] = useState<EnrichedDatabasePayload | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

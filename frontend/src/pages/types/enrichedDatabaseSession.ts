@@ -1,10 +1,10 @@
-export type DatabaseSession = {
+export type EnrichedDatabaseSession = {
   id: number;
   characterId: number;
   characterLevel: number;
   createdAt: string;
 
-  sessionDate: string;
+  sessionDate: Date;
   sessionHour: string;
   sessionLength: string;
 
@@ -24,6 +24,21 @@ export type DatabaseSession = {
   killedMonsters: {
     count: number;
     name: string;
+    bestiaryLevel: string;
+    creatureClass: string;
+    deathDmg: number;
+    drownDmg: number;
+    earthDmg: number;
+    energyDmg: number;
+    experience: number;
+    fireDmg: number;
+    hitPoints: number;
+    holyDmg: number;
+    hpDrainDmg: number;
+    iceDmg: number;
+    isBoss: boolean;
+    physicalDmg: number;
+    updatedAt: string;
   }[];
   lootedItems: { count: number; name: string }[];
 };

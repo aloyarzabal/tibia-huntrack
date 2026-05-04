@@ -32,7 +32,7 @@ export async function getSessionById(id: string) {
   });
 
   const { data } = await res.json();
-  return data;
+  return data.session;
 }
 
 export async function previewSession(payload: PostPayload) {
