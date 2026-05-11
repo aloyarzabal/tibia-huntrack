@@ -63,8 +63,6 @@ export const ElementValue = styled.p<ColorProps>`
   margin-left: 0.5rem;
 
   ${(props) => {
-    console.log();
-
     if (props.value > 100) {
       return css`
         color: ${statColors.weak};
