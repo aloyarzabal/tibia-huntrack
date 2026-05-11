@@ -28,6 +28,7 @@ export const Elements = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
   padding-top: 0.5rem;
+  column-gap: 2rem;
 `;
 
 export const Element = styled.div`
