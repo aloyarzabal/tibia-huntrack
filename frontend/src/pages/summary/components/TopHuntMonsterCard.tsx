@@ -49,42 +49,58 @@ export function TopHuntMonsterCard({ monster, position }: MonsterCardProps) {
           <S.Elements>
             <S.Element>
               <S.ElementIcon src="/Physical.png"></S.ElementIcon>
-              <S.ElementValue>{monster.physicalDmg}</S.ElementValue>
+              <S.ElementValue value={monster.physicalDmg}>
+                {monster.physicalDmg}
+              </S.ElementValue>
             </S.Element>
 
             <S.Element>
               <S.ElementIcon src="/Holy.png"></S.ElementIcon>
-              <S.ElementValue>{monster.holyDmg}</S.ElementValue>
+              <S.ElementValue value={monster.holyDmg}>
+                {monster.holyDmg}
+              </S.ElementValue>
             </S.Element>
 
             <S.Element>
               <S.ElementIcon src="/Fire.png"></S.ElementIcon>
-              <S.ElementValue>{monster.fireDmg}</S.ElementValue>
+              <S.ElementValue value={monster.fireDmg}>
+                {monster.fireDmg}
+              </S.ElementValue>
             </S.Element>
 
             <S.Element>
               <S.ElementIcon src="/Earth.png"></S.ElementIcon>
-              <S.ElementValue>{monster.earthDmg}</S.ElementValue>
+              <S.ElementValue value={monster.earthDmg}>
+                {monster.earthDmg}
+              </S.ElementValue>
             </S.Element>
 
             <S.Element>
               <S.ElementIcon src="/Energy.png"></S.ElementIcon>
-              <S.ElementValue>{monster.energyDmg}</S.ElementValue>
+              <S.ElementValue value={monster.energyDmg}>
+                {monster.energyDmg}
+              </S.ElementValue>
             </S.Element>
 
             <S.Element>
               <S.ElementIcon src="/Death.png"></S.ElementIcon>
-              <S.ElementValue>{monster.deathDmg}</S.ElementValue>
+              <S.ElementValue value={monster.deathDmg}>
+                {monster.deathDmg}
+              </S.ElementValue>
             </S.Element>
 
             <S.Element>
               <S.ElementIcon src="/ice.png"></S.ElementIcon>
-              <S.ElementValue>{monster.iceDmg}</S.ElementValue>
+              <S.ElementValue value={monster.iceDmg}>
+                {monster.iceDmg}
+              </S.ElementValue>
             </S.Element>
 
             <S.Element>
               <S.ElementIcon src="/Drowning.png"></S.ElementIcon>
-              <S.ElementValue>{monster.drownDmg}</S.ElementValue>
+              <S.ElementValue value={monster.drownDmg}>
+                {monster.drownDmg}
+              </S.ElementValue>
             </S.Element>
           </S.Elements>
         </S.ElementStats>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const TopCard = styled.div<PositionProps>`
   border: 1px solid ${(props) => positionColors[props.position] || defaultColor};
@@ -46,10 +46,41 @@ export const StatValue = styled.p`
   margin-left: 0.5rem;
 `;
 
-export const ElementValue = styled.p`
+interface ColorProps {
+  value: number;
+}
+
+const statColors: Record<string, string> = {
+  weak: "#1a611e",
+  neutral: "#000",
+  strong: "#000",
+  immune: "#000000a4",
+};
+
+export const ElementValue = styled.p<ColorProps>`
   display: inline;
   font-size: 1.1rem;
   margin-left: 0.5rem;
+
+  ${(props) => {
+    console.log();
+
+    if (props.value > 100) {
+      return css`
+        color: ${statColors.weak};
+        font-weight: 800;
+        font-size: 1.4rem;
+      `;
+    } else if (props.value === 0) {
+      return css`
+        color: ${statColors.immune};
+      `;
+    } else {
+      return css`
+        color: ${statColors.neutral};
+      `;
+    }
+  }}
 `;
 
 export const Elims = styled.p`
@@ -82,29 +113,6 @@ export const Img = styled.img`
   max-height: 60px;
 `;
 
-// export const PositionChip = styled.button`
-//   width: fit-content;
-//   font-size: 1rem;
-//   display: flex;
-//   padding: 0.6em 0.5rem;
-//   gap: 0.4rem;
-//   font-weight: bold;
-//   border-radius: 5px;
-//   text-shadow: 2px 2px 3px rgb(136 0 136 / 50%);
-//   background: linear-gradient(15deg, #f09f33) no-repeat;
-//   background-size: 300%;
-//   color: #000;
-//   border: none;
-//   box-shadow: 0 30px 10px -20px rgba(0, 0, 0, 0.2);
-//   align-items: center;
-
-//   & svg {
-//     width: 13px;
-//     fill: black;
-//   }
-// `;
-
-// 1. Definimos los colores por posición
 export const positionColors: Record<number, string> = {
   1: "#FFD700", // Oro
   2: "#C0C0C0", // Plata
@@ -117,7 +125,6 @@ interface PositionProps {
   position: number;
 }
 
-// 2. Creamos el styled component usando la prop
 export const PositionChip = styled.button<PositionProps>`
   width: fit-content;
   font-size: 1rem;
