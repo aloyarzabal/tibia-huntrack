@@ -42,5 +42,6 @@ export async function previewSession(payload: PostPayload) {
     body: JSON.stringify(payload),
   });
 
-  return res.json();
+  const { data } = await res.json();
+  return data;
 }

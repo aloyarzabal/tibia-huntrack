@@ -9,7 +9,11 @@ import type { InputDamage } from "../../types/inputDamage";
 import type { InputPayload } from "../../types/payloads";
 
 interface CreateSessionFormProps {
-  onSubmitNewSession: (newSession: InputPayload) => void;
+  onSubmitNewSession: (
+    newSession: InputPayload,
+    level: number,
+    charId: number,
+  ) => void;
 }
 
 type ValidationIconState = "default" | "correct" | "incorrect";
@@ -26,7 +30,7 @@ export function CreateSessionForm({
   const [isInputSessionWrong, setIsInputSessionWrong] = useState(false);
   const [isInputDamageWrong, setIsInputDamageWrong] = useState(false);
   const [parsedSessionInput, setParsedSessionInput] = useState<InputSession>(
-    {} as InputSession
+    {} as InputSession,
   );
   const [parsedDamageInput, setParsedDamageInput] =
     useState<InputDamage | null>(null);
@@ -40,9 +44,12 @@ export function CreateSessionForm({
   const [sessionError, setSessionError] = useState<string | null>(null);
   const [damageError, setDamageError] = useState<string | null>(null);
 
+  const [level, setLevel] = useState<number>(385);
+  const [charId, setCharId] = useState<number>(1);
+
   // Handler of the Session input
   const handleSessionInputChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     setIsInputSessionWrong(false);
     setSessionError("");
@@ -52,7 +59,7 @@ export function CreateSessionForm({
 
   // Handler of the Damage input
   const handleDamageInputChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     setIsInputDamageWrong(false);
     setDamageError("");
@@ -64,7 +71,7 @@ export function CreateSessionForm({
   // the input is parsed correctly, changing the icon
   // and setting validation to correct if applies.
   const handleSessionKeyDown = (
-    event: React.KeyboardEvent<HTMLTextAreaElement>
+    event: React.KeyboardEvent<HTMLTextAreaElement>,
   ) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -77,14 +84,14 @@ export function CreateSessionForm({
         setIsInputSessionWrong(true);
         setSessionValidationState("incorrect");
         setSessionError(
-          err instanceof Error ? err.message : "Invalid session input!"
+          err instanceof Error ? err.message : "Invalid session input!",
         );
       }
     }
   };
 
   const handleDamageKeyDown = (
-    event: React.KeyboardEvent<HTMLTextAreaElement>
+    event: React.KeyboardEvent<HTMLTextAreaElement>,
   ) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -96,7 +103,7 @@ export function CreateSessionForm({
         setIsInputDamageWrong(true);
         setDamageValidationState("incorrect");
         setDamageError(
-          err instanceof Error ? err.message : "Invalid damage input!"
+          err instanceof Error ? err.message : "Invalid damage input!",
         );
       }
     }
@@ -120,7 +127,7 @@ export function CreateSessionForm({
       session: parsedSessionInput,
       damage: parsedDamageInput,
     };
-    onSubmitNewSession(inputPayload);
+    onSubmitNewSession(inputPayload, level, charId);
   };
 
   //    ***************************************************
@@ -152,9 +159,24 @@ export function CreateSessionForm({
         New Session
       </Heading>
       <Img src="./Copy_To_Clipboard.jpeg" alt="copy to clipboard" />
-      <label htmlFor="textSessionInput">
+
+      <Label>Level</Label>
+      <input
+        type="text"
+        value={level}
+        onChange={(e) => setLevel(+e.target.value)}
+      />
+
+      <Label>Char ID</Label>
+      <input
+        type="text"
+        value={charId}
+        onChange={(e) => setCharId(+e.target.value)}
+      />
+
+      <Label htmlFor="textSessionInput">
         Click "Copy to Clipboard" and paste it here:
-      </label>
+      </Label>
       <TextIconContainer>
         <Textarea
           id="textSessionInput"
@@ -310,4 +332,8 @@ const Button = styled.button`
       border-color: var(--color-grey-200);
       background-color: #a7961d6e;
     `}
+`;
+
+const Label = styled.label`
+  display: block;
 `;

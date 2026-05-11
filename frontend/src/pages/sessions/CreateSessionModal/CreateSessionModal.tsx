@@ -1,9 +1,13 @@
 import { useState } from "react";
 import Modal from "../../../components/Modal";
 import { SessionSummary } from "../../summary/SessionSummary";
-import type { InputPayload, PostPayload } from "../../types/payloads";
+import type {
+  EnrichedDatabasePayload,
+  InputPayload,
+  PostPayload,
+} from "../../types/payloads";
 import { CreateSessionForm } from "./CreateSessionForm";
-import { createSession } from "../../../api/apiSessions";
+import { createSession, previewSession } from "../../../api/apiSessions";
 
 type Step = "input" | "summary";
 
@@ -13,40 +17,50 @@ type Props = {
 
 export function CreateSessionModal({ onClose }: Props) {
   const [step, setStep] = useState<Step>("input");
-  const [payload, setPayload] = useState<InputPayload | null>(null);
+  const [postPayload, setPostPayload] = useState<PostPayload | null>(null);
+  const [previewPayload, setPreviewPayload] =
+    useState<EnrichedDatabasePayload | null>(null);
 
-  const onSubmitNewSession = (payload: InputPayload) => {
-    setPayload(payload);
+  const onSubmitNewSession = async (
+    payload: InputPayload,
+    level: number,
+    charId: number,
+  ) => {
+    const post: PostPayload = {
+      session: {
+        ...payload.session,
+        characterId: charId,
+        characterLevel: level,
+      },
+      damage: payload.damage,
+    };
+
+    const preview = await previewSession(post);
+
+    setPostPayload(post);
+    setPreviewPayload(preview);
     setStep("summary");
   };
 
   const onSave = async () => {
-    if (!payload) return;
+    if (!postPayload) return;
 
-    // Needed till the level is read by the app automatically
-    const post: PostPayload = {
-      session: { ...payload.session, characterId: 2, characterLevel: 336 },
-      damage: payload.damage,
-    };
-    await createSession(post);
-
+    await createSession(postPayload);
     onClose();
   };
 
   return (
     <Modal onClose={onClose}>
       {step === "input" && (
-        <CreateSessionForm
-          onSubmitNewSession={onSubmitNewSession}
-        ></CreateSessionForm>
+        <CreateSessionForm onSubmitNewSession={onSubmitNewSession} />
       )}
 
-      {step === "summary" && payload && (
+      {step === "summary" && previewPayload && (
         <SessionSummary
-          sessionToDisplay={payload}
+          sessionToDisplay={previewPayload}
           mode="preview"
           onSave={onSave}
-        ></SessionSummary>
+        />
       )}
     </Modal>
   );

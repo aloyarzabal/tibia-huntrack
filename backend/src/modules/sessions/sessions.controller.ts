@@ -30,7 +30,7 @@ export const createSession = catchAsync(
         damage: result.createdDamage,
       },
     });
-  }
+  },
 );
 
 //            /sessions/
@@ -47,7 +47,7 @@ export const getAllSessions = catchAsync(
       results: sessions.length,
       data: sessions,
     });
-  }
+  },
 );
 
 //            /sessions/:id
@@ -71,7 +71,7 @@ export const getSession = catchAsync(
         session,
       },
     });
-  }
+  },
 );
 
 //            /sessions/:id
@@ -94,10 +94,10 @@ export const deleteSession = catchAsync(
     } else {
       next(new AppError("An ID is needed to delete the character", 400));
     }
-  }
+  },
 );
 
-//            /sessions/:id
+//            /sessions/preview
 export const previewSession = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { session, damage } = req.body as {
@@ -107,7 +107,7 @@ export const previewSession = catchAsync(
 
     if (!session) return next(new AppError("Missing session data", 400));
 
-    const preview = getSessionWithDetails(session);
+    const preview = await getSessionWithDetails(session);
 
     if (!preview) return next(new AppError("Session not previewed", 500));
 
@@ -118,14 +118,14 @@ export const previewSession = catchAsync(
         damage: damage,
       },
     });
-  }
+  },
 );
 
 // X          /sessions/:id
 export const updateSession = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     // De momento no se hacen updates
-  }
+  },
 );
 
 //Only for Postman or future implementations            /sessions/
@@ -144,5 +144,5 @@ export const getAllSessionsNoDamage = catchAsync(
         sessions,
       },
     });
-  }
+  },
 );
