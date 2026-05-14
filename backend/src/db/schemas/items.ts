@@ -12,5 +12,6 @@ export const items = pgTable("items", {
   sellTo: jsonb("sell_to").$type<string[]>(),
   imbuements: jsonb("imbuements").$type<string[]>(),
   outfits: jsonb("outfits").$type<string[]>(),
+  primaryType: varchar("primary_type"),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

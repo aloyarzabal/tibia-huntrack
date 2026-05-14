@@ -85,6 +85,20 @@
       "when": 1765816830674,
       "tag": "0011_flawless_blazing_skull",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1778590737504,
+      "tag": "0012_motionless_bloodscream",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1778591283222,
+      "tag": "0013_silent_master_chief",
+      "breakpoints": true
     }
   ]
 }

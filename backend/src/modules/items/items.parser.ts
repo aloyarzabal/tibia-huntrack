@@ -86,6 +86,9 @@ export function parseItemWikitext(wikitext: string): ParsedItemData {
     else sellTo = splitCommaList(sellToRaw);
   }
 
+  // Extraer el campo primarytype
+  const primaryType = extractInfoboxField(wikitext, "primarytype");
+
   // imbuements: primero infobox, si no --> buscar en cuerpo
   const imbuementsRaw = extractInfoboxField(wikitext, "imbuements");
   const imbuements = imbuementsRaw ? splitCommaList(imbuementsRaw) : null;
@@ -100,5 +103,6 @@ export function parseItemWikitext(wikitext: string): ParsedItemData {
     sellTo,
     imbuements,
     outfits,
+    primaryType,
   };
 }

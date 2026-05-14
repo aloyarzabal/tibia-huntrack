@@ -17,6 +17,7 @@ export async function getItemData(name: string) {
       sellTo: null,
       imbuements: null,
       outfits: null,
+      primaryType: null,
     };
   }
 
