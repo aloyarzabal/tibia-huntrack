@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { MonsterCard } from "./components/MonsterCard";
 import Heading from "../../components/Heading";
 import { CompactMonsterCard } from "./components/CompactMonsterCard";
 import { TopHuntMonsterCard } from "./components/TopHuntMonsterCard";
-import { Monster } from "./types/monster";
+import { EnrichedKilledMonsters } from "../types/enrichedDatabaseSession";
 
 interface MonsterSummaryProps {
-  killedMonsters: Monster[];
+  killedMonsters: EnrichedKilledMonsters[];
 }
 
 // TODO
@@ -20,14 +19,7 @@ export function MonsterSummary({ killedMonsters }: MonsterSummaryProps) {
     return killedMonsters.sort((a, b) => b.count - a.count);
   };
 
-  const countKills = (monsters: Monster[]) => {
-    return Object.values(monsters).reduce((acc, mon) => acc + mon.count, 0);
-  };
-
   const sortedMonsters = sortMonsters();
-  // const cuantos = countKills(sortedMonsters);
-
-  // console.log(cuantos, sortedMonsters.length, cuantos / sortedMonsters.length);
 
   return (
     <>

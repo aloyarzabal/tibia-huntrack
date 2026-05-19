@@ -1,10 +1,10 @@
+import { EnrichedKilledMonsters } from "../../types/enrichedDatabaseSession";
 import { monsterNameToImageUrl } from "../utils/monsterToUrl";
-import { Monster } from "../types/monster";
 import * as S from "./TopHuntMonsterCard.styled";
 
 interface MonsterCardProps {
   position: number;
-  monster: Monster;
+  monster: EnrichedKilledMonsters;
 }
 
 export function TopHuntMonsterCard({ monster, position }: MonsterCardProps) {
