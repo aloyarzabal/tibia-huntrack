@@ -1,19 +1,20 @@
 import styled from "styled-components";
 import { ItemCard } from "./components/ItemCard";
 import Heading from "../../components/Heading";
+import { EnrichedLootedItems } from "../types/enrichedDatabaseSession";
 
 interface LootSummaryProps {
-  lootedItems: { count: number; name: string }[];
+  lootedItems: EnrichedLootedItems[];
 }
 
 export function LootSummary({ lootedItems }: LootSummaryProps) {
-  const sorted = lootedItems.sort((a, b) => b.count - a.count);
+  const sorted = lootedItems.sort((a, b) => b.npcValue - a.npcValue);
   return (
     <>
       <Heading as={"h3"}>Items</Heading>
       <Container>
         {sorted.map((item) => (
-          <ItemCard count={item.count} name={item.name} />
+          <ItemCard key={item.name} item={item} />
         ))}
       </Container>
     </>

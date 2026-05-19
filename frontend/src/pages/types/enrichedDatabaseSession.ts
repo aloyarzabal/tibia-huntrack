@@ -1,3 +1,33 @@
+export type EnrichedLootedItems = {
+  count: number;
+  name: string;
+  npcValue: number;
+  sellTo: string[] | null;
+  imbuements: string[] | null;
+  outfits: string[] | null;
+  primaryType: string;
+};
+
+export type EnrichedKilledMonsters = {
+  count: number;
+  name: string;
+  bestiaryLevel: string;
+  creatureClass: string;
+  deathDmg: number;
+  drownDmg: number;
+  earthDmg: number;
+  energyDmg: number;
+  experience: number;
+  fireDmg: number;
+  hitPoints: number;
+  holyDmg: number;
+  hpDrainDmg: number;
+  iceDmg: number;
+  isBoss: boolean;
+  physicalDmg: number;
+  updatedAt: string;
+};
+
 export type EnrichedDatabaseSession = {
   id: number;
   characterId: number;
@@ -21,24 +51,6 @@ export type EnrichedDatabaseSession = {
   healing: number;
   healingPerHour: number;
 
-  killedMonsters: {
-    count: number;
-    name: string;
-    bestiaryLevel: string;
-    creatureClass: string;
-    deathDmg: number;
-    drownDmg: number;
-    earthDmg: number;
-    energyDmg: number;
-    experience: number;
-    fireDmg: number;
-    hitPoints: number;
-    holyDmg: number;
-    hpDrainDmg: number;
-    iceDmg: number;
-    isBoss: boolean;
-    physicalDmg: number;
-    updatedAt: string;
-  }[];
-  lootedItems: { count: number; name: string }[];
+  killedMonsters: EnrichedKilledMonsters[];
+  lootedItems: EnrichedLootedItems[];
 };

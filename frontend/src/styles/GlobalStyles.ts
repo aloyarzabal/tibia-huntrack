@@ -60,8 +60,28 @@ const GlobalStyles = createGlobalStyle`
   --color-summary-background: #ffefd9;
   --color-summary-title: #5e4c40;
   --color-summary-text: #5a2900;
-  --color-summary-table-pair: #f0e0c7
-  --color-summary-table-odd: #d5c0a1
+  --color-summary-table-pair: #f0e0c7;
+  --color-summary-table-odd: #d5c0a1;
+
+  --color-price-min: #c0c0c0;
+  --color-price-min-transp: #c0c0c080;
+  --color-price-low: #21bf27;
+  --color-price-low-transp: #21bf2780;
+  --color-price-med: #249dff;
+  --color-price-med-transp: #42A5F580;
+  --color-price-high:  #aa57ca;
+  --color-price-high-transp:  #8f56a580;
+  --color-price-veryhigh: #c0b81c;
+  --color-price-veryhigh-transp: #8d871b80;
+
+  --boxshadow-price-low: 0 0 4px 1px var(--color-price-low-transp);
+  --boxshadow-price-min: 0 0 4px 1px var(--color-price-min);
+  --boxshadow-price-med: 0 0 4px 1px var(--color-price-med);
+  --boxshadow-price-high: 0 0 4px 1px var(--color-price-high-transp);
+  --boxshadow-price-veryhigh: 0 0 4px 1px var(--color-price-veryhigh-transp);
+
+  /* ____________________ */
+   
 
   --backdrop-color: rgba(255, 255, 255, 0.1);
 
